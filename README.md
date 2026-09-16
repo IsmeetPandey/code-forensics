@@ -1,25 +1,44 @@
 # Code Forensics 🧬
 
-A repository archaeology tool that studies how a codebase evolved through Git history and highlights change hotspots.
+> Investigate how a codebase evolved through Git history.
 
-## Run locally
+Code Forensics is a repository archaeology tool that turns Git history into structured evidence: commit activity, contributors, change hotspots, and Python structure metrics.
+
+## What it does
+
+- Reports commit count and recent commit metadata
+- Lists contributors
+- Finds frequently changed file hotspots
+- Counts Python functions and classes with the AST
+- Emits structured JSON for later visualization or reporting
+
+## Quick start
 
 ```bash
 python forensics.py path/to/repository
 ```
 
-The command emits structured JSON so the analysis can later feed a web dashboard or report generator.
+The command emits JSON that can be consumed by a dashboard, report generator, or other analysis tooling.
 
-## Current MVP
+## Engineering principle
 
-- Git commit count and recent commit metadata
-- Contributor list
-- File change-frequency hotspots
-- Python AST function/class counts
-- JSON output suitable for further visualization
+A hotspot is a **signal, not proof** of a bug, poor engineering, or architectural weakness. The tool reports evidence and leaves interpretation to the developer.
 
-## Design principle
+## Quality & maintenance
 
-A hotspot is a **signal**, not proof of a bug or poor engineering. The tool reports evidence and leaves interpretation to the developer.
+- Dependency updates are managed with Dependabot.
+- CI performs a Python compilation/smoke check on pushes and pull requests.
+- Contributions are documented in `CONTRIBUTING.md`.
+- Security reports should follow `SECURITY.md`.
 
-Future versions: line churn, refactor/bug-fix signals, architecture milestones, interactive timelines, and exportable reports.
+## Roadmap
+
+- [ ] Line-level churn analysis
+- [ ] Refactor vs. bug-fix signals
+- [ ] Architecture milestones
+- [ ] Interactive timelines
+- [ ] Exportable reports
+
+## Scope
+
+Run the analysis against repositories you are authorized to inspect. Treat generated findings as analytical signals that require human review.
