@@ -1,36 +1,25 @@
 # Code Forensics 🧬
 
-A repository archaeology tool that studies how a codebase evolved through Git history and identifies change hotspots.
+A repository archaeology tool that studies how a codebase evolved through Git history and highlights change hotspots.
 
-## Product thesis
+## Run locally
 
-A current codebase hides its history. Git contains evidence about which files change repeatedly, when architecture shifts happened, and where maintenance effort concentrates.
-
-## Planned analysis
-
-```text
-Git history → commit/file metrics → hotspots → timeline → explainable report
+```bash
+python forensics.py path/to/repository
 ```
 
-Initial signals include:
+The command emits structured JSON so the analysis can later feed a web dashboard or report generator.
 
-- commit frequency by file
-- lines added/removed over time
-- churn hotspots
-- bug-fix / refactor keyword signals
-- contributor concentration
-- files whose size and change frequency both rise
-- architectural milestones inferred from file-tree changes
+## Current MVP
 
-The tool must label these as **signals**, not proof of defects or developer quality.
+- Git commit count and recent commit metadata
+- Contributor list
+- File change-frequency hotspots
+- Python AST function/class counts
+- JSON output suitable for further visualization
 
-## Build phases
+## Design principle
 
-- **Phase 1:** repository parser + baseline statistics
-- **Phase 2:** file churn and hotspot analysis
-- **Phase 3:** interactive repository timeline
-- **Phase 4:** AST-aware analysis and exportable reports
+A hotspot is a **signal**, not proof of a bug or poor engineering. The tool reports evidence and leaves interpretation to the developer.
 
-## Intended stack
-
-Python + GitPython + standard-library AST parsing + FastAPI + React + D3.js.
+Future versions: line churn, refactor/bug-fix signals, architecture milestones, interactive timelines, and exportable reports.
