@@ -1,7 +1,8 @@
-import subprocess
+import sys
 from pathlib import Path
 
-from forensics import python_metrics, run
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from forensics import python_metrics, run  # noqa: E402
 
 
 def test_python_metrics_counts_async_functions(tmp_path: Path):
